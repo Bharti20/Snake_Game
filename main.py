@@ -16,7 +16,7 @@ screen.bgcolor('green')
 snakeHead = turtle.Turtle()
 snakeHead.shape("square")
 snakeHead.color('black')
-snakeHead.shapesize(0.50, 0.50)
+snakeHead.shapesize(0.60, 0.60)
 snakeHead.penup()
 snakeHead.goto(0,0)
 snakeHead.direction = 'stop'
@@ -62,51 +62,62 @@ def goLeft():
     if snakeHead.direction != "right":
         snakeHead.direction = "left"
 
+
+screen.listen()
+screen.onkey(goUp, 'Up' )
+screen.onkey(goDown, 'Down')
+screen.onkey(goRight, 'Right')
+screen.onkey(goLeft, 'Left')
+
 # snake food
 food = turtle.Turtle()
 food.speed(0)
 food.shape('circle')
-food.color('black')
+food.color('red')
 food.shapesize(0.50, 0.50)
 food.penup()
-food.goto(80,0)
+food.goto(0,0)
+
+#Increase snake body length
+snake_list = []
+delay = 0.15
+while True:
+    screen.update()
+    # move()
+    time.sleep(delay)
+    if snakeHead.distance(food)<15:
+        x = random.randint(-200, 200)
+        y = random.randint(-200, 200)
+        food.goto(x, y)
+        new_snake = turtle.Turtle()
+        new_snake.speed(0)
+        new_snake.shapesize(0.70, 0.70)
+        new_snake.shape('square')
+        new_snake.color('white')
+        new_snake.penup()
+        snake_list.append(new_snake)
+
+    for i in range(len(snake_list)-1, 0,-1):
+        x = snake_list[i-1].xcor()    
+        y = snake_list[i-1].ycor()
+        snake_list[i].goto(x,y)
+    
+    if len(snake_list)>0:
+        x = snakeHead.xcor()
+        y = snakeHead.ycor()
+        snake_list[0].goto(x,y)
+    move()
+    for b in snake_list:
+        if b.distance(snakeHead) < 20:
+            time.sleep(1)
+            snakeHead.goto(0,0)
+            snakeHead.direction ='stop'
+
+            for b in snake_list:
+                b.ht()
+            snake_list.clear()
+            delay = 0.1
+    time.sleep(delay)
 
 
-def main():
-    while True:
-        screen.update()
-        move()
-        time.sleep(0.30)
-        screen.listen()
-        screen.onkey(goUp, 'Up' )
-        screen.onkey(goDown, 'Down')
-        screen.onkey(goRight, 'Right')
-        screen.onkey(goLeft, 'Left')
-        
-main()
-
-
-
-
-
-
-
-
-
-
-
-# turtle.speed(1)
-# turtle.goto(10, 10)
-# turtle.towards(0,0)
-# turtle.position()
-# turtle.forward(100)
-# turtle.left(90)
-# # turtle.setx(10)
-# turtle.heading()
-# # turtle.home()
-# turtle.stamp()
-# turtle.circle(50)
-# turtle.forward(100)
- #hold screen 
-
-
+    

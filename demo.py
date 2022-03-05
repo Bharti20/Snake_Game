@@ -1,26 +1,9 @@
-# import package
-import turtle
-  
-  
-# check y coordinate
-print(turtle.ycor())
-turtle.forward(100)
-  
-# check y coordinate
-print(turtle.ycor())
-turtle.right(45)
-turtle.forward(100)
-  
-# check y coordinate
-print(turtle.ycor())
-turtle.right(90)
-turtle.forward(100)
-  
-# check y coordinate
-print(turtle.ycor())
-turtle.right(45)
-turtle.forward(100)
-  
-# check y coordinate
-print(turtle.ycor())
+    # if snakeHead.xcor()>290:
+    #     snakeHead.setx(-290)
+    # if snakeHead.xcor()> -290:
+    #     snakeHead.setx(290)
+    # if snakeHead.ycor()>290:
+    #     snakeHead.sety(-290)
+    # if snakeHead.ycor()> -290:
+    #     snakeHead.sety(290)
     
