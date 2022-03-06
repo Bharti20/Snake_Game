@@ -136,7 +136,12 @@ while True:
                 b.ht()
             snake_list.clear()
             delay = 0.1
+            scores = 0
+            high_scores =0
+            board.clear()
+            board.write("Score: 0 High Score: 0", align="center", font=("Courier", 24, "normal"))
     time.sleep(delay)
+
 
 
     
