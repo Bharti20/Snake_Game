@@ -31,21 +31,29 @@ board.hideturtle()
 board.goto(0,240)
 board.write("Score: 0 High Score: 0", align="center", font=("Courier", 24, "normal"))
 
+# Game over massage
+massage = turtle.Turtle()
+massage.color('yellow')
+massage.speed(0)
+massage.penup()
+massage.hideturtle()
+massage.goto(10,10)
+
 def move():
     if snakeHead.direction == "up":
-        y = snakeHead.ycor() #y coordinate of the turtle
+        y = snakeHead.ycor() 
         snakeHead.sety(y + 20)
  
     if snakeHead.direction == "down":
-        y = snakeHead.ycor() #y coordinate of the turtle
+        y = snakeHead.ycor() 
         snakeHead.sety(y - 20)
  
     if snakeHead.direction == "right":
-        x = snakeHead.xcor() #y coordinate of the turtle
+        x = snakeHead.xcor() 
         snakeHead.setx(x + 20)
  
     if snakeHead.direction == "left":
-        x = snakeHead.xcor() #y coordinate of the turtle
+        x = snakeHead.xcor() 
         snakeHead.setx(x - 20)
 
 def goUp():
@@ -63,7 +71,6 @@ def goLeft():
     if snakeHead.direction != "right":
         snakeHead.direction = "left"
 
-
 screen.listen()
 screen.onkey(goUp, 'Up' )
 screen.onkey(goDown, 'Down')
@@ -78,9 +85,8 @@ food.color('red')
 food.penup()
 food.goto(0,0)
 
-#Increase snake body length
 snake_list = []
-delay = 0.15
+delay = 0.10
 while True:
     screen.update()
     time.sleep(delay)
@@ -124,8 +130,11 @@ while True:
         high_scores =0
         board.clear()
         board.write("Score: 0 High Score: 0", align="center", font=("Courier", 24, "normal"))
-
+        massage.write('Game Over! Press arrow to start',align="center", font=("Courier", 21, "normal"))
+        time.sleep(2)
+        massage.clear()
     move()
+    # body collisions
     for b in snake_list:
         if b.distance(snakeHead) < 20:
             time.sleep(1)
@@ -141,6 +150,7 @@ while True:
             board.clear()
             board.write("Score: 0 High Score: 0", align="center", font=("Courier", 24, "normal"))
     time.sleep(delay)
+
 
 
 
